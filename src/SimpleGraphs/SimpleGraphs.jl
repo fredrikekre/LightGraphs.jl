@@ -7,7 +7,7 @@ import Base:
     eltype, show, ==, Pair, Tuple, copy, length, start, next, done, issubset, zero, in
 
 import LightGraphs:
-    _NI, _insert_and_dedup!, AbstractGraph, AbstractEdge, AbstractEdgeIter,
+    _insert_and_dedup!, AbstractGraph, AbstractEdge, AbstractEdgeIter,
     src, dst, edgetype, nv, ne, vertices, edges, is_directed,
     has_vertex, has_edge, inneighbors, outneighbors,
 
@@ -46,7 +46,7 @@ fadj(g::AbstractSimpleGraph) = g.fadjlist
 fadj(g::AbstractSimpleGraph, v::Integer) = g.fadjlist[v]
 
 
-badj(x...) = _NI("badj", x)
+badj(x...) = throw(MethodError(badj, (x...,)))
 
 # handles single-argument edge constructors such as pairs and tuples
 has_edge(g::AbstractSimpleGraph, x) = has_edge(g, edgetype(g)(x))

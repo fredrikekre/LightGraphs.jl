@@ -1,5 +1,4 @@
 @testset "Persistence" begin
-    @test_throws ErrorException LightGraphs._NI("Not implemented", 1234)
     pdict = loadgraphs(joinpath(testdir, "testdata", "tutte-pathdigraph.jgz"))
     p1 = pdict["Tutte"]
     p2 = pdict["pathdigraph"]
