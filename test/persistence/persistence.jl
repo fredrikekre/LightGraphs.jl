@@ -1,5 +1,5 @@
 @testset "Persistence" begin
-    @test_throws ErrorException LightGraphs._NI("Not implemented")
+    @test_throws ErrorException LightGraphs._NI("Not implemented", 1234)
     pdict = loadgraphs(joinpath(testdir, "testdata", "tutte-pathdigraph.jgz"))
     p1 = pdict["Tutte"]
     p2 = pdict["pathdigraph"]
@@ -12,7 +12,7 @@
     @test savegraph(f, p1, LGFormat(); compress=true) == 1
     @test savegraph(f, p2; compress=true) == 1
     @test (ne(p2), nv(p2)) == (9, 10)
-    
+
     g2 = loadgraph(f)
     h2 = loadgraph(f, LGFormat())
     j2 = loadgraph(f, "graph")
@@ -32,7 +32,7 @@
     @test savegraph(f, d) == 2
     # test try block (#701)
     @test_throws TypeError savegraph(f, d; compress=nothing)
-    
+
     close(fio)
     rm(f)
 end
